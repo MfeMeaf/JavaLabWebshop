@@ -2,5 +2,15 @@ package se.iths.felix.webshop.model;
 
 public abstract class Discount {
 
-    public abstract double calculatePRice(double originalPRice);
+    protected String description;
+
+    public Discount(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract double calculatePrice(double originalPrice);
 }
