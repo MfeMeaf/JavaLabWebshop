@@ -57,6 +57,6 @@ public class Product {
     }
 
     public String toFileLine() {
-        return articleNumber + ";" + ";" + price + ";" + description;
+        return articleNumber + ";" + title + ";" + price + ";" + description;
     }
 }
