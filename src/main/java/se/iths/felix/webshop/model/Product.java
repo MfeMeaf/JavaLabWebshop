@@ -60,8 +60,8 @@ public class Product {
         return articleNumber + ";" + title + ";" + price + ";" + description;
     }
 
-    public String toString(){
-        return "Article number: "+ articleNumber +
+    public String toString() {
+        return "Article number: " + articleNumber +
                 "Title: " + title +
                 "Price: " + price +
                 "Description: " + description;

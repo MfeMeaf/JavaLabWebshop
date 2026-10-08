@@ -41,6 +41,7 @@ public class WebShopManager {
             handler.info("Product article number provided does not match an existing product");
         } else {
             handler.info(product.toString());
+            handler.info("Discounted price: " + discount.calculatePrice(product.getPrice()));
         }
     }
 
