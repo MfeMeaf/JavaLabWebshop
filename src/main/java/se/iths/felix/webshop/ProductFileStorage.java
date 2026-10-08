@@ -2,13 +2,13 @@ package se.iths.felix.webshop;
 
 import se.iths.felix.webshop.model.Product;
 
-import java.awt.image.ImagingOpException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ProductFileStorage implements ProductStorage {
     private Path file = Path.of("products.txt");
@@ -18,7 +18,7 @@ public class ProductFileStorage implements ProductStorage {
         String fileRow = product.toFileLine();
         fileRow += System.lineSeparator();
         try {
-            Files.writeString(file,fileRow, StandardOpenOption.CREATE,StandardOpenOption.APPEND);
+            Files.writeString(file, fileRow, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             IO.println("Succesfully wrote to file");
         } catch (IOException e) {
             IO.println("Could not save product to file, Err: " + e.getMessage());
@@ -28,8 +28,7 @@ public class ProductFileStorage implements ProductStorage {
     @Override
     public List<Product> getProducts() {
         List<Product> products = new ArrayList();
-        IO.println("Hi");
-        if(Files.exists(file)){
+        if (Files.exists(file)) {
             try {
                 Files.lines(file).forEach(line -> {
                     Product product = Product.fromFileLine(line);
@@ -46,8 +45,8 @@ public class ProductFileStorage implements ProductStorage {
     public Product getProduct(String articleNumber) {
         List<Product> products = getProducts();
 
-        for(Product p : products){
-            if(p.getArticleNumber() == articleNumber){
+        for (Product p : products) {
+            if (Objects.equals(p.getArticleNumber(), articleNumber)) {
                 return p;
             }
         }

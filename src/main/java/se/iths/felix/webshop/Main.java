@@ -2,8 +2,9 @@ package se.iths.felix.webshop;
 
 public class Main {
     static void main() {
-        WebShopManager myWebshop = new WebShopManager();
-
+        ProductFileStorage myStorage = new ProductFileStorage();
+        OutInputHandler myHandler = new ConsoleHandler();
+        WebShopManager myWebshop = new WebShopManager(myStorage, myHandler);
         myWebshop.startWebshop();
     }
 }

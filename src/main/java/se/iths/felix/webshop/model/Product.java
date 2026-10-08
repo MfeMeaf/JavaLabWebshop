@@ -59,4 +59,11 @@ public class Product {
     public String toFileLine() {
         return articleNumber + ";" + title + ";" + price + ";" + description;
     }
+
+    public String toString(){
+        return "Article number: "+ articleNumber +
+                "Title: " + title +
+                "Price: " + price +
+                "Description: " + description;
+    }
 }
