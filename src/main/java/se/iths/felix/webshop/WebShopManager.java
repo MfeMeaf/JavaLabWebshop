@@ -23,26 +23,36 @@ public class WebShopManager {
         productStorage.saveProduct(product);
     }
 
-    public void getProductsFromStorage() {
+    public List<Product> getProductsFromStorage() {
         List<Product> products = productStorage.getProducts();
         if (products == null) {
             handler.info("There are currently no products in storage");
         } else {
             for (Product p : products) {
                 handler.info(p.toString());
-                handler.info("Discounted price: " + discount.calculatePrice(p.getPrice()));
+                if (discount == null) {
+                    handler.info("No discounted price");
+                } else {
+                    handler.info("Discounted price: " + discount.calculatePrice(p.getPrice()));
+                }
             }
         }
+        return products;
     }
 
-    public void getProductFromStorage(String articleNumber) {
+    public Product getProductFromStorage(String articleNumber) {
         Product product = productStorage.getProduct(articleNumber);
         if (product == null) {
             handler.info("Product article number provided does not match an existing product");
         } else {
             handler.info(product.toString());
-            handler.info("Discounted price: " + discount.calculatePrice(product.getPrice()));
+            if (discount == null) {
+                handler.info("No discounted price");
+            } else {
+                handler.info("Discounted price: " + discount.calculatePrice(product.getPrice()));
+            }
         }
+        return product;
     }
 
     public void createProduct() {
