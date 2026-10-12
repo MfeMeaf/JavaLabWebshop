@@ -56,21 +56,26 @@ public class WebShopManager {
     }
 
     public void createProduct() {
-        String articleNumber = handler.prompt("Input article number: ");
-        Product product = productStorage.getProduct(articleNumber);
-        if (product != null) {
-            handler.info("A product with that article number already exists");
-            createProduct();
-        } else if (articleNumber.isBlank()) {
-            handler.info("Article number can't be blank");
-            createProduct();
-        }
-        String description = handler.prompt("Input description: ");
-        String title = handler.prompt("Input Title: ");
-        double price = Double.parseDouble(handler.prompt("Input price of product: "));
+        try {
+            String articleNumber = handler.prompt("Input article number: ");
+            Product product = productStorage.getProduct(articleNumber);
+            if (product != null) {
+                handler.info("A product with that article number already exists");
+                createProduct();
+            } else if (articleNumber.isBlank()) {
+                handler.info("Article number can't be blank");
+                createProduct();
+            }
+            String description = handler.prompt("Input description: ");
+            String title = handler.prompt("Input Title: ");
+            double price = Double.parseDouble(handler.prompt("Input price of product: "));
 
-        Product newProduct = new Product(articleNumber, title, price, description);
-        saveProductToStorage(newProduct);
+            Product newProduct = new Product(articleNumber, title, price, description);
+            saveProductToStorage(newProduct);
+        } catch (NumberFormatException e) {
+            handler.info("Error occured while setting price: " + e.getMessage() + " | Make sure that price is a number and contains no letters.");
+        }
+
     }
 
 
