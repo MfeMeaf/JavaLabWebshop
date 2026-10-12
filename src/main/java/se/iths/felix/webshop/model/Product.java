@@ -62,8 +62,8 @@ public class Product {
 
     public String toString() {
         return "Article number: " + articleNumber +
-                "Title: " + title +
-                "Price: " + price +
-                "Description: " + description;
+                " | Title: " + title +
+                " | Price: " + price +
+                " | Description: " + description;
     }
 }
